@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Demo.Data.Models
 {
-    internal class Employee
+    public class Employee
     {
         [Key] // make Primary Key
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)] //make Identity (1,1)
@@ -38,12 +38,12 @@ namespace Demo.Data.Models
         [ForeignKey(nameof(Department))]
         public int? DepartmentDeptId { get; set; }
         [InverseProperty(nameof(Models.Department.Employees))]
-        public Department? Department { get; set; }
+        public virtual Department? Department { get; set; }
         #endregion
 
         #region Manage[One]
         [InverseProperty(nameof(Models.Department.Manager))]
-        public Department? ManageDepartment { get; set; }
+        public virtual Department? ManageDepartment { get; set; }
         #endregion
     }
 }

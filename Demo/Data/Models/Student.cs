@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Demo.Data.Models
 {
-    internal class Student
+    public class Student
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public int? Age { get; set; }
-        public ICollection<StudentsCourses> StudentCourses { get; set; } = new HashSet<StudentsCourses>();
+        public virtual ICollection<StudentsCourses> StudentCourses { get; set; } = new HashSet<StudentsCourses>();
     }
 }

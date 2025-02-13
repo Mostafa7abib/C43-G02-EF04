@@ -13,7 +13,10 @@ namespace Demo.Data
     internal class CompanyDbContext : DbContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-            => optionsBuilder.UseSqlServer("Server=ABOHABIB\\MSSQLSERVER01;Database=DemoEf04;Trusted_Connection=True;Trustservercertificate=True");
+        {
+            optionsBuilder.UseSqlServer("Server=ABOHABIB\\MSSQLSERVER01;Database=DemoEf04;Trusted_Connection=True;Trustservercertificate=True");
+            optionsBuilder.UseLazyLoadingProxies();
+        }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Department> Departments { get; set; }
         public DbSet<Student> Students { get; set; }
