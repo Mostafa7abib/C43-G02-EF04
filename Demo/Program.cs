@@ -11,7 +11,29 @@ namespace Demo
             #region Session04
             #region DataSeeding 
             using CompanyDbContext dbContext = new CompanyDbContext();
-            DbContextSeeding.Seed(dbContext);
+            //DbContextSeeding.Seed(dbContext);
+            #endregion
+
+            #region Navigitional Properities
+            #region Example 01
+            var employee = (from E in dbContext.Employees
+                            where E.Code == 5
+                            select E).FirstOrDefault();
+            Console.WriteLine($"EmpName: {employee?.Name}\t , EmpAge: {employee?.Age}\t , EmpCodeOfDep: {employee?.DepartmentDeptId}");
+            #endregion
+            #region Example 02
+            var department = (from D in dbContext.Departments
+                             where D.DeptId==110
+                             select D).FirstOrDefault();
+            if(department != null )
+            {
+                Console.WriteLine($"DepartmentName: {department.Name}");
+                foreach(var E in department.Employees)
+                {
+                    Console.WriteLine($"EmployeeCode: {E.Code}\t , EmployeeName: {E.Name}");
+                }
+            }
+            #endregion
             #endregion
             #endregion
         }
